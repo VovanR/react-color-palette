@@ -1,0 +1,6 @@
+.colorpalette-component {
+    min-width: 500px;
+    min-height: 500px;
+    box-shadow: 0 0 0 1px #ccc;
+    /* clear: fix; */
+}
