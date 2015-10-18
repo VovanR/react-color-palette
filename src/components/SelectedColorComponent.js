@@ -6,25 +6,34 @@ require('styles/SelectedColor.css');
 
 class SelectedColorComponent extends React.Component {
 	render() {
+		let value = this.props.value;
+		let name = this.props.name;
 		return (
-			<div class="palette-selected-color__background"
-				style="background-color: {{ value }}; color: {{ value }}">
-				<span class="palette-selected-color__edit" tabindex="0">
-					edit
-					<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true" />
-				</span>
+			<div className="palette-selected-color__item">
+				<div
+					className="palette-selected-color__background"
+					style={{
+						backgroundColor: value,
+						color: value
+					}}
+				>
+					<span className="palette-selected-color__edit" tabIndex="0">
+						edit
+						<span className="glyphicon glyphicon-option-horizontal" aria-hidden="true" />
+					</span>
 
-				<span class="palette-selected-color__remove" tabindex="0">
-					destruct
-					<span class="glyphicon glyphicon-remove" aria-hidden="true" />
-				</span>
+					<span className="palette-selected-color__remove" tabIndex="0">
+						destruct
+						<span className="glyphicon glyphicon-remove" aria-hidden="true" />
+					</span>
 
-				<div class="palette-selected-color__name">
-					{{ name }}
-				</div>
+					<div className="palette-selected-color__name">
+						{name}
+					</div>
 
-				<div class="palette-selected-color__value">
-					{{ value }}
+					<div className="palette-selected-color__value">
+						{value}
+					</div>
 				</div>
 			</div>
 		);

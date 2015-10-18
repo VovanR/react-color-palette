@@ -1,3 +1,14 @@
 .addcolorpanel-component {
-    border: 1px dashed #f00;
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .form-group {
+        margin: 0;
+    }
+
+    .form-control {
+        font-family: monospace;
+    }
 }
