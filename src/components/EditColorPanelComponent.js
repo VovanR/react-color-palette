@@ -2,7 +2,7 @@
 
 import React from 'react';
 import SelectedColorComponent from './SelectedColorComponent';
-import { Panel, Badge, Input, Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
+import { Panel, Badge } from 'react-bootstrap';
 
 require('styles/EditColorPanel.css');
 

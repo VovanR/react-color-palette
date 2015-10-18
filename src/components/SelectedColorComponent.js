@@ -9,7 +9,7 @@ class SelectedColorComponent extends React.Component {
 		let value = this.props.value;
 		let name = this.props.name;
 		return (
-			<div className="palette-selected-color__item">
+			<div className="selectedcolor-component">
 				<div
 					className="palette-selected-color__background"
 					style={{

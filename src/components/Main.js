@@ -11,7 +11,7 @@ import EditColorPanelComponent from './EditColorPanelComponent';
 class AppComponent extends React.Component {
 	render() {
 		return (
-			<div>
+			<div className="index">
 				<HeaderComponent />
 
 				<Grid>

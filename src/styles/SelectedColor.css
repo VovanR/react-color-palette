@@ -36,21 +36,21 @@
     transition: opacity ease 0.25s;
 }
 
-.palette-selected-color__item {
-    + .palette-selected-color__item {
+.selectedcolor-component {
+    + .selectedcolor-component {
         margin-top: 2px;
     }
 }
 
-.palette-selected-color__item_mode_edit {
+.selectedcolor-component_mode_edit {
     .palette-selected-color__background {
         box-shadow: inset 0 0 0 2px #000,
                     inset 0 0 0 4px #fff;
     }
 }
 
-.palette-selected-color__item:hover,
-.palette-selected-color__item_state_hover {
+.selectedcolor-component:hover,
+.selectedcolor-component_state_hover {
     .palette-selected-color__edit {
         opacity: 1;
     }
