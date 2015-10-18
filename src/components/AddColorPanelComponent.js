@@ -3,7 +3,7 @@
 import React from 'react';
 import { Panel, Input, Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
 
-require('styles//AddColorPanel.css');
+require('styles/AddColorPanel.css');
 
 class AddColorPanelComponent extends React.Component {
 	render() {

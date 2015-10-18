@@ -3,7 +3,7 @@
 import React from 'react';
 import { Nav, Navbar, NavBrand, Label, NavItem } from 'react-bootstrap';
 
-require('styles//Header.css');
+require('styles/Header.css');
 
 class HeaderComponent extends React.Component {
 	render() {

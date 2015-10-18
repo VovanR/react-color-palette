@@ -3,7 +3,7 @@
 import React from 'react';
 import ColorPaletteItemComponent from './ColorPaletteItemComponent';
 
-require('styles//ColorPalette.css');
+require('styles/ColorPalette.css');
 
 class ColorPaletteComponent extends React.Component {
 	render() {

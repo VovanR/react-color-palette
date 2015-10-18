@@ -4,7 +4,7 @@ import React from 'react';
 import { Panel, Badge } from 'react-bootstrap';
 import ColorPaletteComponent from './ColorPaletteComponent';
 
-require('styles//PalettePanel.css');
+require('styles/PalettePanel.css');
 
 class PalettePanelComponent extends React.Component {
 	render() {
