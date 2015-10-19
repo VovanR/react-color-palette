@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import EditColorComponent from './EditColorComponent';
 
 require('styles/SelectedColor.css');
 
@@ -35,6 +36,8 @@ class SelectedColorComponent extends React.Component {
 						{value}
 					</div>
 				</div>
+
+				<EditColorComponent value={value} name={name} />
 			</div>
 		);
 	}
