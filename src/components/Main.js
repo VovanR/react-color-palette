@@ -10,6 +10,11 @@ import EditColorPanelComponent from './EditColorPanelComponent';
 
 class AppComponent extends React.Component {
 	render() {
+		let colors = [
+			{ code: '#ff0000', name: 'Red' },
+			{ code: '#00ff00', name: 'Green' },
+			{ code: '#0000ff', name: 'Blue' }
+		];
 		return (
 			<div className="index">
 				<HeaderComponent />
@@ -17,12 +22,12 @@ class AppComponent extends React.Component {
 				<Grid>
 					<Row>
 						<Col md={7}>
-							<PalettePanelComponent />
+							<PalettePanelComponent colors={colors} />
 						</Col>
 
 						<Col md={5}>
 							<AddColorPanelComponent />
-							<EditColorPanelComponent />
+							<EditColorPanelComponent colors={colors} />
 						</Col>
 					</Row>
 				</Grid>

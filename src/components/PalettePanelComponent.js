@@ -10,21 +10,24 @@ class PalettePanelComponent extends React.Component {
 	render() {
 		var header = (
 			<span>
-				Added <Badge>0</Badge>
+				Added <Badge>{this.props.colors.length}</Badge>
 			</span>
 		);
 		return (
 			<div className="palettepanel-component">
 				<Panel header={header}>
-					<ColorPaletteComponent />
+					<ColorPaletteComponent colors={this.props.colors} />
 				</Panel>
 			</div>
 		);
 	}
 }
 
-// Uncomment properties you need
-// PalettePanelComponent.propTypes = {};
-// PalettePanelComponent.defaultProps = {};
+PalettePanelComponent.propTypes = {
+	colors: React.PropTypes.array
+};
+PalettePanelComponent.defaultProps = {
+	colors: []
+};
 
 export default PalettePanelComponent;

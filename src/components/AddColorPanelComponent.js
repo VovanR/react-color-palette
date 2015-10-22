@@ -6,33 +6,41 @@ import { Panel, Input, Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap
 require('styles/AddColorPanel.css');
 
 class AddColorPanelComponent extends React.Component {
+	handleSubmit(e) {
+		console.log(this.refs.code.getValue(), this.refs.name.getValue());
+		e.preventDefault();
+	}
 	render() {
 		return (
 			<div className="addcolorpanel-component">
 				<Panel header="New">
-					<Grid fluid={true}>
-						<Row>
-							<Col xs={5}>
-								<Input
-									type="text"
-									placeholder="#ff0000"
-									ref="value"
-								/>
-							</Col>
+					<form onSubmit={this.handleSubmit.bind(this)}>
+						<Grid fluid={true}>
+							<Row>
+								<Col xs={5}>
+									<Input
+										type="text"
+										placeholder="#ff0000"
+										ref="code"
+										autoComplete="off"
+									/>
+								</Col>
 
-							<Col xs={5}>
-								<Input
-									type="text"
-									placeholder="Red"
-									ref="name"
-								/>
-							</Col>
+								<Col xs={5}>
+									<Input
+										type="text"
+										placeholder="Red"
+										ref="name"
+										autoComplete="off"
+									/>
+								</Col>
 
-							<Col xs={2}>
-								<Button><Glyphicon glyph="plus" /></Button>
-							</Col>
-						</Row>
-					</Grid>
+								<Col xs={2}>
+									<Button type="submit"><Glyphicon glyph="plus" /></Button>
+								</Col>
+							</Row>
+						</Grid>
+					</form>
 				</Panel>
 			</div>
 		);

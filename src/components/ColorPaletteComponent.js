@@ -7,21 +7,28 @@ require('styles/ColorPalette.css');
 
 class ColorPaletteComponent extends React.Component {
 	render() {
-		let color = '#ff0000';
 		return (
 			<div className="colorpalette-component">
 				<div className="color-palette">
-					<ColorPaletteItemComponent value={color} />
+					{this.props.colors.map(color => {
+						return (
+							<ColorPaletteItemComponent
+								key={color.code}
+								code={color.code}
+							/>
+						)
+					})}
 				</div>
 			</div>
 		);
 	}
 }
 
-// Uncomment properties you need
 ColorPaletteComponent.propTypes = {
-	value: React.PropTypes.string
+	colors: React.PropTypes.array
 };
-// ColorPaletteComponent.defaultProps = {};
+ColorPaletteComponent.defaultProps = {
+	colors: []
+};
 
 export default ColorPaletteComponent;

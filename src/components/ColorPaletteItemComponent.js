@@ -10,16 +10,19 @@ class ColorPaletteItemComponent extends React.Component {
 			<span
 				className="colorpaletteitem-component"
 				style={{
-					color: this.props.value,
-					backgroundColor: this.props.value
+					color: this.props.code,
+					backgroundColor: this.props.code
 				}}
 			/>
 		);
 	}
 }
 
-// Uncomment properties you need
-// ColorPaletteItemComponent.propTypes = {};
-// ColorPaletteItemComponent.defaultProps = {};
+ColorPaletteItemComponent.propTypes = {
+	code: React.PropTypes.string
+};
+ColorPaletteItemComponent.defaultProps = {
+	code: 'magenta'
+};
 
 export default ColorPaletteItemComponent;

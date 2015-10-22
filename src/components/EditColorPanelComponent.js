@@ -10,18 +10,24 @@ class EditColorPanelComponent extends React.Component {
 	render() {
 		let header = (
 			<span>
-				Selected <Badge>{0}</Badge>
+				Selected <Badge>{this.props.colors.length}</Badge>
 			</span>
 		);
-		let color = '#ff0000';
-		let name = 'Red';
 		return (
 			<div className="editcolorpanel-component">
 				<Panel header={header}>
 					<div className="palette-selected-colors-placeholder">
 						<div className="palette-selected-colors__scrollbar">
 							<div className="palette-selected-colors">
-								<SelectedColorComponent value={color} name={name} />
+								{this.props.colors.map(color => {
+									return (
+										<SelectedColorComponent
+											key={color.code}
+											code={color.code}
+											name={color.name}
+										/>
+									);
+								})}
 							</div>
 						</div>
 					</div>
@@ -31,8 +37,11 @@ class EditColorPanelComponent extends React.Component {
 	}
 }
 
-// Uncomment properties you need
-// EditColorPanelComponent.propTypes = {};
-// EditColorPanelComponent.defaultProps = {};
+EditColorPanelComponent.propTypes = {
+	colors: React.PropTypes.array
+};
+EditColorPanelComponent.defaultProps = {
+	colors: []
+};
 
 export default EditColorPanelComponent;
