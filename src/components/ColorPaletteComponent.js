@@ -15,6 +15,8 @@ class ColorPaletteComponent extends React.Component {
 							<ColorPaletteItemComponent
 								key={color.id}
 								code={color.code}
+								selected={color.selected}
+								onClick={this.props.onColorClick.bind(this, color.id)}
 							/>
 						)
 					})}
@@ -25,7 +27,8 @@ class ColorPaletteComponent extends React.Component {
 }
 
 ColorPaletteComponent.propTypes = {
-	colors: React.PropTypes.array
+	colors: React.PropTypes.array,
+	onColorClick: React.PropTypes.func
 };
 ColorPaletteComponent.defaultProps = {
 	colors: []

@@ -14,9 +14,9 @@ class AppComponent extends React.Component {
 		super();
 		this.state = {
 			colors: [
-				{ id: uniqueId('color'), code: '#ff0000', name: 'Red' },
-				{ id: uniqueId('color'), code: '#00ff00', name: 'Green' },
-				{ id: uniqueId('color'), code: '#0000ff', name: 'Blue' }
+				{ id: uniqueId('color'), code: '#ff0000', name: 'Red', selected: false },
+				{ id: uniqueId('color'), code: '#00ff00', name: 'Green', selected: false },
+				{ id: uniqueId('color'), code: '#0000ff', name: 'Blue', selected: false }
 			]
 		};
 	}
@@ -36,6 +36,18 @@ class AppComponent extends React.Component {
 		});
 	}
 
+	getSelectedColors() {
+		return this.state.colors.filter(color => color.selected);
+	}
+
+	handleColorClick(colorId) {
+		let color = findWhere(this.state.colors, {id: colorId});
+		color.selected = !color.selected;
+		this.setState({
+			colors: this.state.colors
+		});
+	}
+
 	render() {
 		return (
 			<div className="index">
@@ -46,6 +58,7 @@ class AppComponent extends React.Component {
 						<Col md={7}>
 							<PalettePanelComponent
 								colors={this.state.colors}
+								onColorClick={this.handleColorClick.bind(this)}
 							/>
 						</Col>
 
@@ -54,7 +67,7 @@ class AppComponent extends React.Component {
 								onAdd={this.handleAddColor.bind(this)}
 							/>
 							<EditColorPanelComponent
-								colors={this.state.colors}
+								colors={this.getSelectedColors()}
 								onChange={this.handleChangeColor.bind(this)}
 							/>
 						</Col>

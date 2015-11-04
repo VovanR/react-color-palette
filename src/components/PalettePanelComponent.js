@@ -16,7 +16,10 @@ class PalettePanelComponent extends React.Component {
 		return (
 			<div className="palettepanel-component">
 				<Panel header={header}>
-					<ColorPaletteComponent colors={this.props.colors} />
+					<ColorPaletteComponent
+						colors={this.props.colors}
+						onColorClick={this.props.onColorClick}
+					/>
 				</Panel>
 			</div>
 		);
@@ -24,7 +27,8 @@ class PalettePanelComponent extends React.Component {
 }
 
 PalettePanelComponent.propTypes = {
-	colors: React.PropTypes.array
+	colors: React.PropTypes.array,
+	onColorClick: React.PropTypes.func
 };
 PalettePanelComponent.defaultProps = {
 	colors: []
