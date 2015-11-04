@@ -10,13 +10,18 @@ import createComponent from 'helpers/shallowRenderHelper';
 import SelectedColorComponent from 'components//SelectedColorComponent.js';
 
 describe('SelectedColorComponent', () => {
-    let component;
+	let component;
 
-    beforeEach(() => {
-      component = createComponent(SelectedColorComponent);
-    });
+	beforeEach(() => {
+		component = createComponent(SelectedColorComponent, {
+			color: {
+				code: '#ff0000',
+				name: 'Red'
+			}
+		});
+	});
 
-    it('should have its component name as default className', () => {
-      expect(component.props.className).to.equal('selectedcolor-component');
-    });
+	it('should have its component name as default className', () => {
+		expect(component.props.className).to.equal('selectedcolor-component');
+	});
 });

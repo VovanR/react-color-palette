@@ -7,12 +7,17 @@ import { Panel, Badge } from 'react-bootstrap';
 require('styles/EditColorPanel.css');
 
 class EditColorPanelComponent extends React.Component {
+	handleChangeColor(color) {
+		this.props.onChange(color);
+	}
+
 	render() {
 		let header = (
 			<span>
 				Selected <Badge>{this.props.colors.length}</Badge>
 			</span>
 		);
+
 		return (
 			<div className="editcolorpanel-component">
 				<Panel header={header}>
@@ -22,9 +27,9 @@ class EditColorPanelComponent extends React.Component {
 								{this.props.colors.map(color => {
 									return (
 										<SelectedColorComponent
-											key={color.code}
-											code={color.code}
-											name={color.name}
+											key={color.id}
+											color={color}
+											onChange={this.handleChangeColor.bind(this)}
 										/>
 									);
 								})}
@@ -38,7 +43,8 @@ class EditColorPanelComponent extends React.Component {
 }
 
 EditColorPanelComponent.propTypes = {
-	colors: React.PropTypes.array
+	colors: React.PropTypes.array,
+	onChange: React.PropTypes.func
 };
 EditColorPanelComponent.defaultProps = {
 	colors: []

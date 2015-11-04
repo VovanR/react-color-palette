@@ -10,13 +10,18 @@ import createComponent from 'helpers/shallowRenderHelper';
 import EditColorComponent from 'components//EditColorComponent.js';
 
 describe('EditColorComponent', () => {
-    let component;
+	let component;
 
-    beforeEach(() => {
-      component = createComponent(EditColorComponent);
-    });
+	beforeEach(() => {
+		component = createComponent(EditColorComponent, {
+			color: {
+				code: '#ff0000',
+				name: 'Red'
+			}
+		});
+	});
 
-    it('should have its component name as default className', () => {
-      expect(component.props.className).to.equal('editcolor-component');
-    });
+	it('should have its component name as default className', () => {
+		expect(component.props.className).to.equal('editcolor-component');
+	});
 });

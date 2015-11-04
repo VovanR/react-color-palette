@@ -9,29 +9,24 @@ class EditColorComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			code: props.code,
-			name: props.name
+			code: props.color.code,
+			name: props.color.name
 		};
 	}
-	handleCodeChange() {
-		this.setState({
-			code: this.refs.code.getValue(),
+
+	handleSubmit(e) {
+		e.preventDefault();
+		this.props.onChange({
+			id: this.props.color.id,
+			code: this.state.code,
 			name: this.state.name
 		});
 	}
-	handleNameChange() {
-		this.setState({
-			code: this.state.code,
-			name: this.refs.name.getValue()
-		});
-	}
-	handleSubmit(e) {
-		e.preventDefault();
-	}
+
 	render() {
 		return (
 			<div
-				className="editcolor-component palette-edit-color"
+				className="editcolor-component"
 				style={{ backgroundColor: this.state.code }}
 			>
 				<form onSubmit={this.handleSubmit.bind(this)}>
@@ -43,7 +38,7 @@ class EditColorComponent extends React.Component {
 									placeholder="#ff0000"
 									ref="code"
 									value={this.state.code}
-									onChange={this.handleCodeChange.bind(this)}
+									onChange={e => this.setState({code: e.target.value})}
 								/>
 							</Col>
 
@@ -53,7 +48,7 @@ class EditColorComponent extends React.Component {
 									placeholder="Red"
 									ref="name"
 									value={this.state.name}
-									onChange={this.handleNameChange.bind(this)}
+									onChange={e => this.setState({name: e.target.value})}
 								/>
 							</Col>
 
@@ -69,12 +64,9 @@ class EditColorComponent extends React.Component {
 }
 
 EditColorComponent.propTypes = {
-	code: React.PropTypes.string,
-	name: React.PropTypes.string
+	onChange: React.PropTypes.func,
+	color: React.PropTypes.object
 };
-EditColorComponent.defaultProps = {
-	code: 'magenta',
-	name: 'Magenta'
-};
+// EditColorComponent.defaultProps = {};
 
 export default EditColorComponent;

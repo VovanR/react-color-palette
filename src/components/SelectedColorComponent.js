@@ -6,9 +6,15 @@ import EditColorComponent from './EditColorComponent';
 require('styles/SelectedColor.css');
 
 class SelectedColorComponent extends React.Component {
+	handleChange(color) {
+		this.props.onChange(color);
+	}
+
 	render() {
-		let code = this.props.code;
-		let name = this.props.name;
+		let color = this.props.color;
+		let code = color.code;
+		let name = color.name;
+
 		return (
 			<div className="selectedcolor-component">
 				<div
@@ -43,19 +49,19 @@ class SelectedColorComponent extends React.Component {
 					</div>
 				</div>
 
-				<EditColorComponent code={code} name={name} />
+				<EditColorComponent
+					color={color}
+					onChange={this.handleChange.bind(this)}
+				/>
 			</div>
 		);
 	}
 }
 
 SelectedColorComponent.propTypes = {
-	code: React.PropTypes.string,
-	name: React.PropTypes.string
+	color: React.PropTypes.object,
+	onChange: React.PropTypes.func
 };
-SelectedColorComponent.defaultProps = {
-	code: 'magenta',
-	name: 'Magenta'
-};
+// SelectedColorComponent.defaultProps = {};
 
 export default SelectedColorComponent;

@@ -13,7 +13,7 @@ class ColorPaletteComponent extends React.Component {
 					{this.props.colors.map(color => {
 						return (
 							<ColorPaletteItemComponent
-								key={color.code}
+								key={color.id}
 								code={color.code}
 							/>
 						)
