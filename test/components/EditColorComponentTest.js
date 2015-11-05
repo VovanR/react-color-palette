@@ -16,7 +16,9 @@ describe('EditColorComponent', () => {
 		component = createComponent(EditColorComponent, {
 			color: {
 				code: '#ff0000',
-				name: 'Red'
+				name: 'Red',
+				onMouseEnter: () => {},
+				onMouseLeave: () => {}
 			}
 		});
 	});

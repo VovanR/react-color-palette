@@ -16,7 +16,9 @@ describe('SelectedColorComponent', () => {
 		component = createComponent(SelectedColorComponent, {
 			color: {
 				code: '#ff0000',
-				name: 'Red'
+				name: 'Red',
+				onMouseEnter: () => {},
+				onMouseLeave: () => {}
 			}
 		});
 	});

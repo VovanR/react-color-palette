@@ -39,8 +39,8 @@ class SelectedColorComponent extends React.Component {
 		return (
 			<div
 				className={className}
-				onMouseEnter={this.props.onMouseEnter.bind(this, color.id)}
-				onMouseLeave={this.props.onMouseLeave.bind(this, color.id)}
+				onMouseEnter={this.props.onMouseEnter.bind(this, id)}
+				onMouseLeave={this.props.onMouseLeave.bind(this, id)}
 			>
 				<div
 					className="palette-selected-color__background"
