@@ -22,6 +22,10 @@ class SelectedColorComponent extends React.Component {
 		this.setState({edit: !this.state.edit});
 	}
 
+	handleDeleteClick() {
+		this.props.onDelete(this.props.color.id);
+	}
+
 	render() {
 		let color = this.props.color;
 		let code = color.code;
@@ -52,7 +56,11 @@ class SelectedColorComponent extends React.Component {
 						/>
 					</span>
 
-					<span className="palette-selected-color__remove" tabIndex="0">
+					<span
+						className="palette-selected-color__remove"
+						tabIndex="0"
+						onClick={this.handleDeleteClick.bind(this)}
+					>
 						destruct
 						<span
 							className="glyphicon glyphicon-remove"
@@ -82,7 +90,8 @@ class SelectedColorComponent extends React.Component {
 
 SelectedColorComponent.propTypes = {
 	color: React.PropTypes.object,
-	onChange: React.PropTypes.func
+	onChange: React.PropTypes.func,
+	onDelete: React.PropTypes.func
 };
 // SelectedColorComponent.defaultProps = {};
 

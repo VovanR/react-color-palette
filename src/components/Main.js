@@ -7,7 +7,7 @@ import HeaderComponent from './HeaderComponent';
 import PalettePanelComponent from './PalettePanelComponent';
 import AddColorPanelComponent from './AddColorPanelComponent';
 import EditColorPanelComponent from './EditColorPanelComponent';
-import {union, uniqueId, findWhere} from 'lodash';
+import {union, uniqueId, findWhere, without} from 'lodash';
 
 class AppComponent extends React.Component {
 	constructor() {
@@ -27,12 +27,23 @@ class AppComponent extends React.Component {
 		});
 	}
 
+	getColorById(colorId) {
+		return findWhere(this.state.colors, {id: colorId});
+	}
+
 	handleChangeColor(color) {
-		let curentColor = findWhere(this.state.colors, {id: color.id});
+		let curentColor = this.getColorById(color.id);
 		curentColor.code = color.code;
 		curentColor.name = color.name;
 		this.setState({
 			colors: this.state.colors
+		});
+	}
+
+	handleDeleteColor(colorId) {
+		let color = this.getColorById(colorId);
+		this.setState({
+			colors: without(this.state.colors, color)
 		});
 	}
 
@@ -41,7 +52,7 @@ class AppComponent extends React.Component {
 	}
 
 	handleColorClick(colorId) {
-		let color = findWhere(this.state.colors, {id: colorId});
+		let color = this.getColorById(colorId);
 		color.selected = !color.selected;
 		this.setState({
 			colors: this.state.colors
@@ -69,6 +80,7 @@ class AppComponent extends React.Component {
 							<EditColorPanelComponent
 								colors={this.getSelectedColors()}
 								onChange={this.handleChangeColor.bind(this)}
+								onDelete={this.handleDeleteColor.bind(this)}
 							/>
 						</Col>
 					</Row>

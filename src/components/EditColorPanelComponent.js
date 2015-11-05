@@ -11,6 +11,10 @@ class EditColorPanelComponent extends React.Component {
 		this.props.onChange(color);
 	}
 
+	handleDeleteColor(colorId) {
+		this.props.onDelete(colorId);
+	}
+
 	render() {
 		let header = (
 			<span>
@@ -30,6 +34,7 @@ class EditColorPanelComponent extends React.Component {
 											key={color.id}
 											color={color}
 											onChange={this.handleChangeColor.bind(this)}
+											onDelete={this.handleDeleteColor.bind(this)}
 										/>
 									);
 								})}
@@ -44,7 +49,8 @@ class EditColorPanelComponent extends React.Component {
 
 EditColorPanelComponent.propTypes = {
 	colors: React.PropTypes.array,
-	onChange: React.PropTypes.func
+	onChange: React.PropTypes.func,
+	onDelete: React.PropTypes.func
 };
 EditColorPanelComponent.defaultProps = {
 	colors: []
