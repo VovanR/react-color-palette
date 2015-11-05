@@ -11,6 +11,9 @@ class ColorPaletteItemComponent extends React.Component {
 			'colorpaletteitem-component',
 			{
 				'colorpaletteitem-component_state_selected': this.props.selected
+			},
+			{
+				'colorpaletteitem-component_state_hovered': this.props.hovered
 			}
 		);
 
@@ -29,11 +32,13 @@ class ColorPaletteItemComponent extends React.Component {
 
 ColorPaletteItemComponent.propTypes = {
 	code: React.PropTypes.string,
-	selected: React.PropTypes.bool
+	selected: React.PropTypes.bool,
+	hovered: React.PropTypes.bool
 };
 ColorPaletteItemComponent.defaultProps = {
 	code: 'magenta',
-	selected: false
+	selected: false,
+	hovered: false
 };
 
 export default ColorPaletteItemComponent;

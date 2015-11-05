@@ -30,13 +30,18 @@ class SelectedColorComponent extends React.Component {
 		let color = this.props.color;
 		let code = color.code;
 		let name = color.name;
+		let id = color.id;
 		let className = classNames(
 			'selectedcolor-component',
 			{'selectedcolor-component_mode_edit': this.state.edit}
 		);
 
 		return (
-			<div className={className}>
+			<div
+				className={className}
+				onMouseEnter={this.props.onMouseEnter.bind(this, color.id)}
+				onMouseLeave={this.props.onMouseLeave.bind(this, color.id)}
+			>
 				<div
 					className="palette-selected-color__background"
 					style={{
@@ -91,7 +96,9 @@ class SelectedColorComponent extends React.Component {
 SelectedColorComponent.propTypes = {
 	color: React.PropTypes.object,
 	onChange: React.PropTypes.func,
-	onDelete: React.PropTypes.func
+	onDelete: React.PropTypes.func,
+	onMouseEnter: React.PropTypes.func,
+	onMouseLeave: React.PropTypes.func
 };
 // SelectedColorComponent.defaultProps = {};
 

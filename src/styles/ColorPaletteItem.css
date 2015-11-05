@@ -13,15 +13,15 @@
     transform: scale(1);
 }
 
+.colorpaletteitem-component_state_selected {
+    z-index: 1;
+    box-shadow: inset 0 0 0 2px #000,
+                inset 0 0 0 4px #fff;
+}
+
 .colorpaletteitem-component:hover,
 .colorpaletteitem-component_state_hovered {
     z-index: 2;
     border-radius: 50%;
     transform: scale(1.5);
-}
-
-.colorpaletteitem-component_state_selected {
-    z-index: 1;
-    box-shadow: inset 0 0 0 2px #000,
-                inset 0 0 0 4px #fff;
 }

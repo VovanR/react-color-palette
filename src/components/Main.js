@@ -14,9 +14,27 @@ class AppComponent extends React.Component {
 		super();
 		this.state = {
 			colors: [
-				{ id: uniqueId('color'), code: '#ff0000', name: 'Red', selected: false },
-				{ id: uniqueId('color'), code: '#00ff00', name: 'Green', selected: false },
-				{ id: uniqueId('color'), code: '#0000ff', name: 'Blue', selected: false }
+				{
+					id: uniqueId('color'),
+					code: '#ff0000',
+					name: 'Red',
+					selected: false,
+					hovered: false
+				},
+				{
+					id: uniqueId('color'),
+					code: '#00ff00',
+					name: 'Green',
+					selected: false,
+					hovered: false
+				},
+				{
+					id: uniqueId('color'),
+					code: '#0000ff',
+					name: 'Blue',
+					selected: false,
+					hovered: false
+				}
 			]
 		};
 	}
@@ -30,14 +48,17 @@ class AppComponent extends React.Component {
 	getColorById(colorId) {
 		return findWhere(this.state.colors, {id: colorId});
 	}
+	updateColors() {
+		this.setState({
+			colors: this.state.colors
+		});
+	}
 
 	handleChangeColor(color) {
 		let curentColor = this.getColorById(color.id);
 		curentColor.code = color.code;
 		curentColor.name = color.name;
-		this.setState({
-			colors: this.state.colors
-		});
+		this.updateColors();
 	}
 
 	handleDeleteColor(colorId) {
@@ -54,9 +75,19 @@ class AppComponent extends React.Component {
 	handleColorClick(colorId) {
 		let color = this.getColorById(colorId);
 		color.selected = !color.selected;
-		this.setState({
-			colors: this.state.colors
-		});
+		this.updateColors();
+	}
+
+	handleMouseEnterColor(colorId) {
+		let color = this.getColorById(colorId);
+		color.hovered = true;
+		this.updateColors();
+	}
+
+	handleMouseLeaveColor(colorId) {
+		let color = this.getColorById(colorId);
+		color.hovered = false;
+		this.updateColors();
 	}
 
 	render() {
@@ -81,6 +112,8 @@ class AppComponent extends React.Component {
 								colors={this.getSelectedColors()}
 								onChange={this.handleChangeColor.bind(this)}
 								onDelete={this.handleDeleteColor.bind(this)}
+								onMouseEnter={this.handleMouseEnterColor.bind(this)}
+								onMouseLeave={this.handleMouseLeaveColor.bind(this)}
 							/>
 						</Col>
 					</Row>

@@ -16,6 +16,7 @@ class ColorPaletteComponent extends React.Component {
 								key={color.id}
 								code={color.code}
 								selected={color.selected}
+								hovered={color.hovered}
 								onClick={this.props.onColorClick.bind(this, color.id)}
 							/>
 						)

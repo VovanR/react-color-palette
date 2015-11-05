@@ -35,6 +35,8 @@ class EditColorPanelComponent extends React.Component {
 											color={color}
 											onChange={this.handleChangeColor.bind(this)}
 											onDelete={this.handleDeleteColor.bind(this)}
+											onMouseEnter={this.props.onMouseEnter.bind(this, color.id)}
+											onMouseLeave={this.props.onMouseLeave.bind(this, color.id)}
 										/>
 									);
 								})}
@@ -50,7 +52,9 @@ class EditColorPanelComponent extends React.Component {
 EditColorPanelComponent.propTypes = {
 	colors: React.PropTypes.array,
 	onChange: React.PropTypes.func,
-	onDelete: React.PropTypes.func
+	onDelete: React.PropTypes.func,
+	onMouseEnter: React.PropTypes.func,
+	onMouseLeave: React.PropTypes.func
 };
 EditColorPanelComponent.defaultProps = {
 	colors: []
