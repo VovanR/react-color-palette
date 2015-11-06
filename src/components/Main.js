@@ -7,35 +7,25 @@ import HeaderComponent from './HeaderComponent';
 import PalettePanelComponent from './PalettePanelComponent';
 import AddColorPanelComponent from './AddColorPanelComponent';
 import EditColorPanelComponent from './EditColorPanelComponent';
-import {union, uniqueId, findWhere, without} from 'lodash';
+import {union, uniqueId, findWhere, without, times} from 'lodash';
+import randomColor from 'randomcolor';
 
 class AppComponent extends React.Component {
 	constructor() {
 		super();
+		let colors = [];
+		times(90, () => {
+			let color = randomColor();
+			colors.push({
+				id: uniqueId('color'),
+				code: color,
+				name: color,
+				selected: false,
+				hovered: false
+			});
+		});
 		this.state = {
-			colors: [
-				{
-					id: uniqueId('color'),
-					code: '#ff0000',
-					name: 'Red',
-					selected: false,
-					hovered: false
-				},
-				{
-					id: uniqueId('color'),
-					code: '#00ff00',
-					name: 'Green',
-					selected: false,
-					hovered: false
-				},
-				{
-					id: uniqueId('color'),
-					code: '#0000ff',
-					name: 'Blue',
-					selected: false,
-					hovered: false
-				}
-			]
+			colors: colors
 		};
 	}
 
