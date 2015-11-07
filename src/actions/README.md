@@ -6,9 +6,9 @@ You can include actions into your components or stores like this:
 let react = require('react/addons');
 let MyAction = require('actions/MyAction');
 class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    MyAction.exampleMethod();
-  }
+	constructor(props) {
+		super(props);
+		MyAction.exampleMethod();
+	}
 }
 ```

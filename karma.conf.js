@@ -14,13 +14,17 @@ module.exports = function(config) {
       mocha: {}
     },
     singleRun: true,
-    reporters: ['mocha'],
+    reporters: ['mocha', 'coverage'],
     preprocessors: {
       'test/loadtests.js': ['webpack', 'sourcemap']
     },
     webpack: webpackCfg,
     webpackServer: {
       noInfo: true
+    },
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/'
     }
   });
 };
