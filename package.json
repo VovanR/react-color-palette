@@ -21,6 +21,7 @@
     "lint": "eslint ./src",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
     "clean": "rimraf dist/*",
+    "deploy": "./node_modules/gh-pages-deploy/bin/gh-pages-deploy",
     "release:major": "npm version major && npm publish && git push --follow-tags",
     "release:minor": "npm version minor && npm publish && git push --follow-tags",
     "release:patch": "npm version patch && npm publish && git push --follow-tags"
@@ -36,6 +37,7 @@
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.8.0",
     "file-loader": "^0.8.4",
+    "gh-pages-deploy": "^0.3.0",
     "glob": "^5.0.15",
     "isparta-loader": "^1.0.0",
     "karma": "^0.13.15",
@@ -79,5 +81,12 @@
     "react-addons-test-utils": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-scrollbar": "^0.2.2"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "prep": [
+      "dist"
+    ],
+    "noprompt": false
   }
 }
