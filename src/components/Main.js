@@ -7,7 +7,7 @@ import HeaderComponent from './HeaderComponent';
 import PalettePanelComponent from './PalettePanelComponent';
 import AddColorPanelComponent from './AddColorPanelComponent';
 import EditColorPanelComponent from './EditColorPanelComponent';
-import {union, uniqueId, findWhere, without, times} from 'lodash';
+import {union, uniqueId, findWhere, without, times, random, sample} from 'lodash';
 import randomColor from 'randomcolor';
 
 class AppComponent extends React.Component {
@@ -27,6 +27,10 @@ class AppComponent extends React.Component {
 		this.state = {
 			colors: colors
 		};
+
+		setTimeout(() => {
+			this._startSleepAnimation();
+		}, 250);
 	}
 
 	handleAddColor(color) {
@@ -78,6 +82,28 @@ class AppComponent extends React.Component {
 		let color = this.getColorById(colorId);
 		color.hovered = false;
 		this.updateColors();
+	}
+
+	_startSleepAnimation() {
+		let wait = random(1, 10) * 100;
+		setTimeout(() => {
+			this._selectRandomColor();
+			this._startSleepAnimation();
+		}, wait);
+	}
+
+	_selectRandomColor() {
+		let color = sample(this.state.colors);
+		color.hovered = true;
+		this.setState({colors: this.state.colors});
+		let wait = random(5, 50) * 100;
+		setTimeout(() => {
+			if (!color) {
+				return;
+			}
+			color.hovered = false;
+			this.setState({colors: this.state.colors});
+		}, wait);
 	}
 
 	render() {
