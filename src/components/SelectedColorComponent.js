@@ -16,6 +16,7 @@ class SelectedColorComponent extends React.Component {
 
 	handleChange(color) {
 		this.props.onChange(color);
+		this.setState({edit: false});
 	}
 
 	handleClickEdit() {
