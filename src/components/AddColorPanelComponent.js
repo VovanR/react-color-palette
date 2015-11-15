@@ -3,6 +3,7 @@
 import React from 'react';
 import { Panel, Input, Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
 import {uniqueId} from 'lodash';
+import tinycolor from 'tinycolor2';
 
 require('styles/AddColorPanel.css');
 
@@ -21,7 +22,7 @@ class AddColorPanelComponent extends React.Component {
 		let code = this.state.code.trim();
 		let name = this.state.name.trim();
 
-		if (!code) {
+		if (!code || !tinycolor(code).isValid()) {
 			return;
 		}
 
