@@ -25,7 +25,8 @@ class AppComponent extends React.Component {
 			});
 		});
 		this.state = {
-			colors: colors
+			colors: colors,
+			multiselect: true
 		};
 
 		setTimeout(() => {
@@ -68,7 +69,11 @@ class AppComponent extends React.Component {
 
 	handleColorClick(colorId) {
 		let color = this.getColorById(colorId);
-		color.selected = !color.selected;
+		let selected = !color.selected;
+		if (!this.state.multiselect) {
+			this.state.colors.forEach(color => {color.selected = false});
+		}
+		color.selected = selected;
 		this.updateColors();
 	}
 
@@ -82,6 +87,12 @@ class AppComponent extends React.Component {
 		let color = this.getColorById(colorId);
 		color.hovered = false;
 		this.updateColors();
+	}
+
+	handleMultiselectChange(selected) {
+		this.setState({
+			multiselect: selected
+		});
 	}
 
 	_startSleepAnimation() {
@@ -117,6 +128,8 @@ class AppComponent extends React.Component {
 							<PalettePanelComponent
 								colors={this.state.colors}
 								onColorClick={this.handleColorClick.bind(this)}
+								multiselect={this.state.multiselect}
+								onMultiselectChange={this.handleMultiselectChange.bind(this)}
 							/>
 						</Col>
 

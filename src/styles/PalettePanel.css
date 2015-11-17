@@ -1,2 +1,12 @@
 .palettepanel-component {
+    .panel-title {
+        .form-group {
+            margin: 0;
+            float: right;
+        }
+
+        .checkbox {
+            margin: 0;
+        }
+    }
 }

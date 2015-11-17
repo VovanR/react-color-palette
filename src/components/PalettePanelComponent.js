@@ -1,17 +1,28 @@
 'use strict';
 
 import React from 'react';
-import { Panel, Badge } from 'react-bootstrap';
+import { Panel, Badge, Input } from 'react-bootstrap';
 import ColorPaletteComponent from './ColorPaletteComponent';
 
 require('styles/PalettePanel.css');
 
 class PalettePanelComponent extends React.Component {
+	handleMultiselectChange() {
+		this.props.onMultiselectChange(!this.props.multiselect);
+	}
+
 	render() {
 		var header = (
-			<span>
+			<div>
 				Added <Badge>{this.props.colors.length}</Badge>
-			</span>
+
+				<Input
+					type="checkbox"
+					label="Multiselect"
+					checked={this.props.multiselect}
+					onChange={this.handleMultiselectChange.bind(this)}
+				/>
+			</div>
 		);
 		return (
 			<div className="palettepanel-component">
@@ -28,7 +39,9 @@ class PalettePanelComponent extends React.Component {
 
 PalettePanelComponent.propTypes = {
 	colors: React.PropTypes.array,
-	onColorClick: React.PropTypes.func
+	onColorClick: React.PropTypes.func,
+	multiselect: React.PropTypes.bool,
+	onMultiselectChange: React.PropTypes.func
 };
 PalettePanelComponent.defaultProps = {
 	colors: []
