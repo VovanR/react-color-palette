@@ -63,6 +63,13 @@ class AppComponent extends React.Component {
 		});
 	}
 
+	handleDeleteAllSelected() {
+		let notSelected = this.state.colors.filter(color => !color.selected);
+		this.setState({
+			colors: notSelected
+		});
+	}
+
 	getSelectedColors() {
 		return this.state.colors.filter(color => color.selected);
 	}
@@ -104,6 +111,10 @@ class AppComponent extends React.Component {
 	}
 
 	_selectRandomColor() {
+		if (!this.state.colors) {
+			return;
+		}
+
 		let color = sample(this.state.colors);
 		color.hovered = true;
 		this.setState({colors: this.state.colors});
@@ -141,6 +152,7 @@ class AppComponent extends React.Component {
 								colors={this.getSelectedColors()}
 								onChange={this.handleChangeColor.bind(this)}
 								onDelete={this.handleDeleteColor.bind(this)}
+								onDeleteAllSelected={this.handleDeleteAllSelected.bind(this)}
 								onMouseEnter={this.handleMouseEnterColor.bind(this)}
 								onMouseLeave={this.handleMouseLeaveColor.bind(this)}
 							/>

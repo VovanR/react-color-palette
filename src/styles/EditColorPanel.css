@@ -1,4 +1,9 @@
 .editcolorpanel-component {
+    .twocols-component {
+        .btn {
+            margin: -2px 0;
+        }
+    }
 }
 .editcolorpanel-component-placeholder {
     height: 432px;

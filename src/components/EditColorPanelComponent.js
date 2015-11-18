@@ -2,8 +2,9 @@
 
 import React from 'react';
 import SelectedColorComponent from './SelectedColorComponent';
-import { Panel, Badge } from 'react-bootstrap';
+import { Panel, Badge, Button, Fade } from 'react-bootstrap';
 import ScrollArea from 'react-scrollbar';
+import TwoCols from './TwoColsComponent';
 
 require('styles/EditColorPanel.css');
 
@@ -18,9 +19,20 @@ class EditColorPanelComponent extends React.Component {
 
 	render() {
 		let header = (
-			<span>
-				Selected <Badge>{this.props.colors.length}</Badge>
-			</span>
+			<TwoCols>
+				<span>Selected <Badge>{this.props.colors.length}</Badge></span>
+				<Fade
+					in={!!this.props.colors.length}
+					unmountOnExit
+				>
+					<Button
+						onClick={this.props.onDeleteAllSelected}
+						bsSize="xsmall"
+					>
+						Destruct selected
+					</Button>
+				</Fade>
+			</TwoCols>
 		);
 
 		return (
@@ -55,6 +67,7 @@ EditColorPanelComponent.propTypes = {
 	colors: React.PropTypes.array,
 	onChange: React.PropTypes.func,
 	onDelete: React.PropTypes.func,
+	onDeleteAllSelected: React.PropTypes.func,
 	onMouseEnter: React.PropTypes.func,
 	onMouseLeave: React.PropTypes.func
 };
