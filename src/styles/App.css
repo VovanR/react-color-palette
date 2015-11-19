@@ -1,4 +1,5 @@
 /* Base Application Styles */
 body {
     cursor: default;
+    user-select: none;
 }
