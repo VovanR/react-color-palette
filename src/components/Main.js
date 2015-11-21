@@ -96,6 +96,11 @@ class AppComponent extends React.Component {
 		this.updateColors();
 	}
 
+	handleSelectAllChange(selected) {
+		this.state.colors.forEach(color => {color.selected = selected});
+		this.updateColors();
+	}
+
 	handleMultiselectChange(selected) {
 		this.setState({
 			multiselect: selected
@@ -140,6 +145,7 @@ class AppComponent extends React.Component {
 								colors={this.state.colors}
 								onColorClick={this.handleColorClick.bind(this)}
 								multiselect={this.state.multiselect}
+								onSelectAllChange={this.handleSelectAllChange.bind(this)}
 								onMultiselectChange={this.handleMultiselectChange.bind(this)}
 							/>
 						</Col>

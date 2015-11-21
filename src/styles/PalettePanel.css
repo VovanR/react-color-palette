@@ -1,7 +1,7 @@
 .palettepanel-component {
-    .panel-title {
+    .twocols-component {
         .form-group {
-            margin: 0;
+            margin: 0 0 0 1em;
             float: right;
         }
 

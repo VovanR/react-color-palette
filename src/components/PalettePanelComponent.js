@@ -1,29 +1,58 @@
 'use strict';
 
 import React from 'react';
-import { Panel, Badge, Input } from 'react-bootstrap';
+import { Panel, Badge, Input, Fade } from 'react-bootstrap';
+import { where } from 'lodash';
 import ColorPaletteComponent from './ColorPaletteComponent';
+import TwoCols from './TwoColsComponent';
 
 require('styles/PalettePanel.css');
 
 class PalettePanelComponent extends React.Component {
+	handleSelectAllChange(isAllSelected) {
+		this.props.onSelectAllChange(!isAllSelected);
+	}
+
 	handleMultiselectChange() {
 		this.props.onMultiselectChange(!this.props.multiselect);
 	}
 
-	render() {
-		var header = (
-			<div>
-				Added <Badge>{this.props.colors.length}</Badge>
+	_isAllSelected() {
+		let colors = this.props.colors;
+		if (!colors.length) {
+			return false;
+		}
+		return where(colors, {selected: true}).length === colors.length;
+	}
 
-				<Input
-					type="checkbox"
-					label="Multiselect"
-					checked={this.props.multiselect}
-					onChange={this.handleMultiselectChange.bind(this)}
-				/>
-			</div>
+	render() {
+		let isAllSelected = this._isAllSelected();
+		let header = (
+			<TwoCols>
+				<span>Added <Badge>{this.props.colors.length}</Badge></span>
+				<Fade
+					in={!!this.props.colors.length}
+					unmountOnExit
+				>
+					<span>
+						<Input
+							type="checkbox"
+							label="Multiselect"
+							checked={this.props.multiselect}
+							onChange={this.handleMultiselectChange.bind(this)}
+						/>
+
+						<Input
+							type="checkbox"
+							label="All"
+							checked={isAllSelected}
+							onChange={this.handleSelectAllChange.bind(this, isAllSelected)}
+						/>
+					</span>
+				</Fade>
+			</TwoCols>
 		);
+
 		return (
 			<div className="palettepanel-component">
 				<Panel header={header}>
@@ -41,6 +70,7 @@ PalettePanelComponent.propTypes = {
 	colors: React.PropTypes.array,
 	onColorClick: React.PropTypes.func,
 	multiselect: React.PropTypes.bool,
+	onSelectAllChange: React.PropTypes.func,
 	onMultiselectChange: React.PropTypes.func
 };
 PalettePanelComponent.defaultProps = {
