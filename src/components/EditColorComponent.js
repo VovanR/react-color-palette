@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Input, Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
+import tinycolor from 'tinycolor2';
 
 require('styles/EditColor.css');
 
@@ -16,10 +17,26 @@ class EditColorComponent extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.onChange({
-			id: this.props.color.id,
-			code: this.state.code,
-			name: this.state.name
+
+		let code = this.state.code.trim();
+		let name = this.state.name.trim();
+
+		if (!code || !tinycolor(code).isValid()) {
+			return;
+		}
+
+		name = name ? name : code;
+		code = tinycolor(code).toString();
+
+		this.setState({
+			code: code,
+			name: name
+		}, () => {
+			this.props.onChange({
+				id: this.props.color.id,
+				code: code,
+				name: name
+			});
 		});
 	}
 

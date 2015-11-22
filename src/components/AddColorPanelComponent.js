@@ -35,7 +35,7 @@ class AddColorPanelComponent extends React.Component {
 		this.setState({
 			code: '',
 			name: ''
-		})
+		});
 	}
 
 	render() {
