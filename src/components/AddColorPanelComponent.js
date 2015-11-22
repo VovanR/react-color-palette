@@ -28,7 +28,7 @@ class AddColorPanelComponent extends React.Component {
 
 		this.props.onAdd({
 			id: uniqueId('color'),
-			code: code,
+			code: tinycolor(code).toString(),
 			name: name ? name : code
 		});
 
