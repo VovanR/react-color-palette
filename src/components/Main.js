@@ -33,15 +33,7 @@ class AppComponent extends React.Component {
 			isIdle: false
 		};
 
-		let timer = away(SLEEP_ANIMATION_TIMEOUT);
-		timer.on('idle', () => {
-			this.setState({
-				isIdle: true
-			}, this._startSleepAnimation);
-		});
-		timer.on('active', () => {
-			this._stopSleepAnimation();
-		});
+		this._initSleepAnimation();
 	}
 
 	handleAddColor(color) {
@@ -114,6 +106,18 @@ class AppComponent extends React.Component {
 	handleMultiselectChange(selected) {
 		this.setState({
 			multiselect: selected
+		});
+	}
+
+	_initSleepAnimation() {
+		let timer = away(SLEEP_ANIMATION_TIMEOUT);
+		timer.on('idle', () => {
+			this.setState({
+				isIdle: true
+			}, this._startSleepAnimation);
+		});
+		timer.on('active', () => {
+			this._stopSleepAnimation();
 		});
 	}
 
