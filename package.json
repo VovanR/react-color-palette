@@ -73,6 +73,7 @@
   "homepage": "https://github.com/VovanR/react-color-palette",
   "license": "MIT",
   "dependencies": {
+    "away": "^1.0.0",
     "classnames": "^2.2.0",
     "lodash": "^3.10.1",
     "normalize.css": "^3.0.3",

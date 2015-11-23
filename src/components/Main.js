@@ -9,6 +9,9 @@ import AddColorPanelComponent from './AddColorPanelComponent';
 import EditColorPanelComponent from './EditColorPanelComponent';
 import {union, uniqueId, findWhere, without, times, random, sample} from 'lodash';
 import randomColor from 'randomcolor';
+import away from 'away';
+
+const SLEEP_ANIMATION_TIMEOUT = 5000;
 
 class AppComponent extends React.Component {
 	constructor() {
@@ -26,12 +29,19 @@ class AppComponent extends React.Component {
 		});
 		this.state = {
 			colors: colors,
-			multiselect: true
+			multiselect: true,
+			isIdle: false
 		};
 
-		setTimeout(() => {
-			this._startSleepAnimation();
-		}, 250);
+		let timer = away(SLEEP_ANIMATION_TIMEOUT);
+		timer.on('idle', () => {
+			this.setState({
+				isIdle: true
+			}, this._startSleepAnimation);
+		});
+		timer.on('active', () => {
+			this._stopSleepAnimation();
+		});
 	}
 
 	handleAddColor(color) {
@@ -108,11 +118,20 @@ class AppComponent extends React.Component {
 	}
 
 	_startSleepAnimation() {
+		if (!this.state.isIdle) {
+			return;
+		}
 		let wait = random(1, 10) * 100;
 		setTimeout(() => {
 			this._selectRandomColor();
 			this._startSleepAnimation();
 		}, wait);
+	}
+
+	_stopSleepAnimation() {
+		this.setState({
+			isIdle: false
+		});
 	}
 
 	_selectRandomColor() {
