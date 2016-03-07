@@ -45,17 +45,11 @@ class AppComponent extends React.Component {
 	getColorById(colorId) {
 		return findWhere(this.state.colors, {id: colorId});
 	}
-	updateColors() {
-		this.setState({
-			colors: this.state.colors
-		});
-	}
-
 	handleChangeColor(color) {
 		let curentColor = this.getColorById(color.id);
 		curentColor.code = color.code;
 		curentColor.name = color.name;
-		this.updateColors();
+		this.forceUpdate();
 	}
 
 	handleDeleteColor(colorId) {
@@ -83,24 +77,24 @@ class AppComponent extends React.Component {
 			this.state.colors.forEach(color => {color.selected = false});
 		}
 		color.selected = selected;
-		this.updateColors();
+		this.forceUpdate();
 	}
 
 	handleMouseEnterColor(colorId) {
 		let color = this.getColorById(colorId);
 		color.hovered = true;
-		this.updateColors();
+		this.forceUpdate();
 	}
 
 	handleMouseLeaveColor(colorId) {
 		let color = this.getColorById(colorId);
 		color.hovered = false;
-		this.updateColors();
+		this.forceUpdate();
 	}
 
 	handleSelectAllChange(selected) {
 		this.state.colors.forEach(color => {color.selected = selected});
-		this.updateColors();
+		this.forceUpdate();
 	}
 
 	handleMultiselectChange(selected) {
@@ -145,14 +139,14 @@ class AppComponent extends React.Component {
 
 		let color = sample(this.state.colors);
 		color.hovered = true;
-		this.setState({colors: this.state.colors});
+		this.forceUpdate();
 		let wait = random(5, 50) * 100;
 		setTimeout(() => {
 			if (!color) {
 				return;
 			}
 			color.hovered = false;
-			this.setState({colors: this.state.colors});
+			this.forceUpdate();
 		}, wait);
 	}
 
